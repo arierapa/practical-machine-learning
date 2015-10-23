@@ -32,7 +32,7 @@ testing<-read.csv("pml-testing.csv",na.strings=c("NA","#DIV/0!",""))
 
 dim(training)
 
-#[1] 19622   160
+[1] 19622   160
 
 dim(testing)
 
