@@ -28,9 +28,10 @@ The goal of the project is to predict the manner in which they did the exercise.
 
 1.- I first loaded the data into the training and testing set. We defined the NA in order to check where there is no information.
 
+```{r}
 training<-read.csv("pml-training.csv",na.strings=c("NA","#DIV/0!",""))
-
 testing<-read.csv("pml-testing.csv",na.strings=c("NA","#DIV/0!",""))
+```
 
 2.- I did some exploratory analysis and cleaning
 
