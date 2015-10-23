@@ -150,8 +150,8 @@ testing3<-testing2[,-1]
 I had to use the same levels from the training set
 
 ```{r}
-levels(testing3$cvtd\_timestamp) = levels(train$cvtd\_timestamp)
-levels(testing3$new\_window) = levels(train$new\_window)
+levels(testing3$cvtd_timestamp) = levels(train$cvtd_timestamp)
+levels(testing3$new_window) = levels(train$new_window)
 predRPt<-predict(modelFitRF,testing3,type="class")
 answers = as.character(predRPt)
 answers
