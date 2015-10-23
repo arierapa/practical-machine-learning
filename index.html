@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Practical-machine-learning-Project-Reprt by arierapa</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Practical-machine-learning-Project-Reprt</h1>
+      <h2 class="project-tagline">report</h2>
+      <a href="https://github.com/arierapa/practical-machine-learning" class="btn">View on GitHub</a>
+      <a href="https://github.com/arierapa/practical-machine-learning/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/arierapa/practical-machine-learning/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="practical-machine-learning---prediction-assignment-write-up" class="anchor" href="#practical-machine-learning---prediction-assignment-write-up" aria-hidden="true"><span class="octicon octicon-link"></span></a><strong>Practical Machine Learning - Prediction Assignment Write-up</strong>
+</h1>
+
+<h2>
+<a id="background" class="anchor" href="#background" aria-hidden="true"><span class="octicon octicon-link"></span></a>Background</h2>
+
+<p>Using devices such as Jawbone Up, Nike FuelBand, and Fitbit it is now possible to collect a large amount of data about personal activity relatively inexpensively. These type of devices are part of the quantified self movement – a group of enthusiasts who take measurements about themselves regularly to improve their health, to find patterns in their behavior, or because they are tech geeks. One thing that people regularly do is quantify how much of a particular activity they do, but they rarely quantify how well they do it. </p>
+
+<p>In this project, the goal will be to use data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants. They were asked to perform barbell lifts correctly and incorrectly in 5 different ways. More information is available from the website here: <a href="http://groupware.les.inf.puc-rio.br/har">http://groupware.les.inf.puc-rio.br/har</a> (see the section on the Weight Lifting Exercise Dataset). </p>
+
+<h2>
+<a id="data" class="anchor" href="#data" aria-hidden="true"><span class="octicon octicon-link"></span></a>Data</h2>
+
+<p>The training data for this project are available here: 
+<a href="https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv">https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv</a></p>
+
+<p>The test data are available here: 
+<a href="https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv">https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv</a></p>
+
+<p>The data for this project come from this source: <a href="http://groupware.les.inf.puc-rio.br/har">http://groupware.les.inf.puc-rio.br/har</a>. If you use the document you create for this class for any purpose please cite them as they have been very generous in allowing their data to be used for this kind of assignment. </p>
+
+<h2>
+<a id="goal" class="anchor" href="#goal" aria-hidden="true"><span class="octicon octicon-link"></span></a>Goal</h2>
+
+<p>The goal of the project is to predict the manner in which they did the exercise. This is the "classe" variable in the training set. </p>
+
+<h2>
+<a id="development" class="anchor" href="#development" aria-hidden="true"><span class="octicon octicon-link"></span></a>Development</h2>
+
+<p>1.- I first loaded the data into the training and testing set. We defined the NA in order to check where there is no information. </p>
+
+<p><code>training&lt;-read.csv("pml-training.csv",na.strings=c("NA","#DIV/0!",""))</code>
+<code>testing&lt;-read.csv("pml-testing.csv",na.strings=c("NA","#DIV/0!",""))</code></p>
+
+<p>2.- I did some exploratory analysis and cleaning</p>
+
+<p><code>dim(training)</code>
+<code>#[1] 19622   160</code></p>
+
+<p><code>dim(testing)</code>
+<code>#[1]  20 160</code></p>
+
+<p>There are 19,622 instances for training with 160 variables, 20 instances for testing.</p>
+
+<p>I realized that there are many NAs in some variables. The idea is to find the variables that have more than 10,000 NAs and take them out of the data sets (50% of the data).</p>
+
+<p><code># finding the variables (columns) that have more than 10,000 NA</code>
+<code>nac&lt;-colSums(is.na(training))&gt;10000</code></p>
+
+<p><code>sum(nac)</code>
+<code># [1] 100</code></p>
+
+<p>There are 100 variables where there are more than 10,000 NA .</p>
+
+<p>I removed the columns (variable) that have more than 10,000 NA</p>
+
+<p><code>training2&lt;-training[,-which(nac==TRUE)]</code></p>
+
+<p>I removed first row that do not have information for predictions</p>
+
+<p><code>training3&lt;-training2[,-1]</code></p>
+
+<p>3.- Fitting a Model</p>
+
+<p><code>library(caret)</code>
+<code>set.seed(32243)</code></p>
+
+<p>I created the data partitioning</p>
+
+<p><code>inTrain&lt;-createDataPartition(training3$classe,p=0.6,list=FALSE)</code>
+<code>train &lt;- training3[inTrain,]</code>
+<code>test&lt;- training3[-inTrain,]</code></p>
+
+<h1>
+<a id="cart" class="anchor" href="#cart" aria-hidden="true"><span class="octicon octicon-link"></span></a>CART</h1>
+
+<p>The first model I used is CART model from Caret package.</p>
+
+<p><code>modelFitRP&lt;-train(classe~.,data=train,method="rpart")</code>
+<code>ModelFitRP</code>
+<code># Accuracy = 0.61</code></p>
+
+<p>The accuracy in this model in the training set is 0.61. I will check in the testing set.</p>
+
+<p><code>predRP&lt;-predict(modelFitRP,newdata=test)</code>
+<code>confusionMatrix(predRP,test$classe)</code>
+<code>#Accuracy = 0.63</code></p>
+
+<p>The accuracy in this model in the testing set is 0.63. It seems there is no overfitting.</p>
+
+<h1>
+<a id="cart-with-rpart" class="anchor" href="#cart-with-rpart" aria-hidden="true"><span class="octicon octicon-link"></span></a>CART WITH RPART</h1>
+
+<p>I will use now CART model from Rpart package.</p>
+
+<p><code>library(rpart)</code>
+<code>modelFitRP2&lt;- rpart(classe ~ ., data=train, method="class")</code>
+<code>predRP2&lt;-predict(modelFitRP2,test,type="class")</code>
+<code>confusionMatrix(predRP2,test$classe)</code>
+<code>#Accuracy = 0.87</code></p>
+
+<p>The accuracy in this model in the testing set is 0.87.</p>
+
+<h1>
+<a id="random-forest" class="anchor" href="#random-forest" aria-hidden="true"><span class="octicon octicon-link"></span></a>RANDOM FOREST</h1>
+
+<p>I will use now Random Forest model from randomForest package.</p>
+
+<p><code>library(randomForest)</code>
+<code>modelFitRF &lt;- randomForest(classe ~. , data=train)</code>
+<code>predRF&lt;-predict(modelFitRF,test,type="class")</code>
+<code>confusionMatrix(predRF,test$classe)</code>
+<code>#Accuracy = 0.99</code></p>
+
+<p>The accuracy in this model in the testing set is 0.99.</p>
+
+<h2>
+<a id="conclusions" class="anchor" href="#conclusions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Conclusions</h2>
+
+<p>If we compare CART model and Random Forest, the first one provide accuracy of 0.87 and the second one 0.99. We choose Random Forest as the model to evaluate the testing data set.</p>
+
+<p><code># predicting on the testing data set of 20 instances</code>
+<code>testing2&lt;-testing[,-which(nac==TRUE)]</code>
+<code>testing3&lt;-testing2[,-1]</code></p>
+
+<p><code># I had to use the same levels from the training set</code>
+<code>levels(testing3$cvtd_timestamp) = levels(train$cvtd_timestamp)</code>
+<code>levels(testing3$new_window) = levels(train$new_window)</code></p>
+
+<p><code>predRPt&lt;-predict(modelFitRF,testing3,type="class")</code>
+<code>answers = as.character(predRPt)</code>
+<code>answers</code></p>
+
+<p>These are the predictions for the 20 test cases.</p>
+
+<p>[1] "B" "A" "B" "A" "A" "E" "D" "B" "A" "A" "B" "C" "B" "A" "E" "E" "A" "B" "B"
+[20] "B"</p>
+
+<p>I will now created the 20 files for the Course Project Submission:</p>
+
+<p><code>pml_write_files = function(x){</code>
+  <code>n = length(x)</code>
+  <code>for(i in 1:n){</code>
+    <code>filename = paste0("problem_id_",i,".txt")</code>
+    <code>write.table(x[i],file=filename,quote=FALSE,row.names=FALSE,col.names=FALSE)</code>
+  <code>}</code>
+<code>}</code>
+<code>pml_write_files(answers)</code></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/arierapa/practical-machine-learning">Practical-machine-learning-Project-Reprt</a> is maintained by <a href="https://github.com/arierapa">arierapa</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
