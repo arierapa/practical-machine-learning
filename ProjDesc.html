@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<title></title>
+
+<script src="data:application/x-javascript;base64,LyohIGpRdWVyeSB2MS4xMS4wIHwgKGMpIDIwMDUsIDIwMTQgalF1ZXJ5IEZvdW5kYXRpb24sIEluYy4gfCBqcXVlcnkub3JnL2xpY2Vuc2UgKi8KIWZ1bmN0aW9uKGEsYil7Im9iamVjdCI9PXR5cGVvZiBtb2R1bGUmJiJvYmplY3QiPT10eXBlb2YgbW9kdWxlLmV4cG9ydHM/bW9kdWxlLmV4cG9ydHM9YS5kb2N1bWVudD9iKGEsITApOmZ1bmN0aW9uKGEpe2lmKCFhLmRvY3VtZW50KXRocm93IG5ldyBFcnJvcigialF1ZXJ5IHJlcXVpcmVzIGEgd2luZG93IHdpdGggYSBkb2N1bWVudCIpO3JldHVybiBiKGEpfTpiKGEpfSgidW5kZWZpbmVkIiE9dHlwZW9mIHdpbmRvdz93aW5kb3c6dGhpcyxmdW5jdGlvbihhLG...(line truncated)...
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="data:text/css;charset=utf-8,html%7Bfont%2Dfamily%3Asans%2Dserif%3B%2Dwebkit%2Dtext%2Dsize%2Dadjust%3A100%25%3B%2Dms%2Dtext%2Dsize%2Dadjust%3A100%25%7Dbody%7Bmargin%3A0%7Darticle%2Caside%2Cdetails%2Cfigcaption%2Cfigure%2Cfooter%2Cheader%2Chgroup%2Cmain%2Cmenu%2Cnav%2Csection%2Csummary%7Bdisplay%3Ablock%7Daudio%2Ccanvas%2Cprogress%2Cvideo%7Bdisplay%3Ainline%2Dblock%3Bvertical%2Dalign%3Abaseline%7Daudio%3Anot%28%5Bcontrols%5D%29%7Bdisplay%3Anone%3Bheight%3A0%7D%5Bhidden%5D%2Ctemplate%7Bdisplay%3Ano...(line truncated)...
+<script src="data:application/x-javascript;base64,LyohCiAqIEJvb3RzdHJhcCB2My4zLjEgKGh0dHA6Ly9nZXRib290c3RyYXAuY29tKQogKiBDb3B5cmlnaHQgMjAxMS0yMDE0IFR3aXR0ZXIsIEluYy4KICogTGljZW5zZWQgdW5kZXIgTUlUIChodHRwczovL2dpdGh1Yi5jb20vdHdicy9ib290c3RyYXAvYmxvYi9tYXN0ZXIvTElDRU5TRSkKICovCmlmKCJ1bmRlZmluZWQiPT10eXBlb2YgalF1ZXJ5KXRocm93IG5ldyBFcnJvcigiQm9vdHN0cmFwJ3MgSmF2YVNjcmlwdCByZXF1aXJlcyBqUXVlcnkiKTsrZnVuY3Rpb24oYSl7dmFyIGI9YS5mbi5qcXVlcnkuc3BsaXQoIiAiKVswXS5zcGxpdCgiLiIpO2lmKGJbMF08MiYmYlsxXTw5fHwxPT1iWzBdJiY5PT1iWz...(line truncated)...
+<script src="data:application/x-javascript;base64,LyoqCiogQHByZXNlcnZlIEhUTUw1IFNoaXYgMy43LjIgfCBAYWZhcmthcyBAamRhbHRvbiBAam9uX25lYWwgQHJlbSB8IE1JVC9HUEwyIExpY2Vuc2VkCiovCi8vIE9ubHkgcnVuIHRoaXMgY29kZSBpbiBJRSA4CmlmICghIXdpbmRvdy5uYXZpZ2F0b3IudXNlckFnZW50Lm1hdGNoKCJNU0lFIDgiKSkgewohZnVuY3Rpb24oYSxiKXtmdW5jdGlvbiBjKGEsYil7dmFyIGM9YS5jcmVhdGVFbGVtZW50KCJwIiksZD1hLmdldEVsZW1lbnRzQnlUYWdOYW1lKCJoZWFkIilbMF18fGEuZG9jdW1lbnRFbGVtZW50O3JldHVybiBjLmlubmVySFRNTD0ieDxzdHlsZT4iK2IrIjwvc3R5bGU+IixkLmluc2VydEJlZm9yZShjLm...(line truncated)...
+<script src="data:application/x-javascript;base64,LyohIFJlc3BvbmQuanMgdjEuNC4yOiBtaW4vbWF4LXdpZHRoIG1lZGlhIHF1ZXJ5IHBvbHlmaWxsICogQ29weXJpZ2h0IDIwMTMgU2NvdHQgSmVobAogKiBMaWNlbnNlZCB1bmRlciBodHRwczovL2dpdGh1Yi5jb20vc2NvdHRqZWhsL1Jlc3BvbmQvYmxvYi9tYXN0ZXIvTElDRU5TRS1NSVQKICogICovCgppZiAoISF3aW5kb3cubmF2aWdhdG9yLnVzZXJBZ2VudC5tYXRjaCgiTVNJRSA4IikpIHsKIWZ1bmN0aW9uKGEpeyJ1c2Ugc3RyaWN0IjthLm1hdGNoTWVkaWE9YS5tYXRjaE1lZGlhfHxmdW5jdGlvbihhKXt2YXIgYixjPWEuZG9jdW1lbnRFbGVtZW50LGQ9Yy5maXJzdEVsZW1lbnRDaGlsZHx8Yy5maXJzdE...(line truncated)...
+
+<style type="text/css">code{white-space: pre;}</style>
+<link href="data:text/css;charset=utf-8,pre%20%2Eoperator%2C%0Apre%20%2Eparen%20%7B%0Acolor%3A%20rgb%28104%2C%20118%2C%20135%29%0A%7D%0Apre%20%2Eliteral%20%7B%0Acolor%3A%20%23990073%0A%7D%0Apre%20%2Enumber%20%7B%0Acolor%3A%20%23099%3B%0A%7D%0Apre%20%2Ecomment%20%7B%0Acolor%3A%20%23998%3B%0Afont%2Dstyle%3A%20italic%0A%7D%0Apre%20%2Ekeyword%20%7B%0Acolor%3A%20%23900%3B%0Afont%2Dweight%3A%20bold%0A%7D%0Apre%20%2Eidentifier%20%7B%0Acolor%3A%20rgb%280%2C%200%2C%200%29%3B%0A%7D%0Apre%20%2Estring%20%7B%0Acolor%3A%...(line truncated)...
+<script src="data:application/x-javascript;base64,CnZhciBobGpzPW5ldyBmdW5jdGlvbigpe2Z1bmN0aW9uIG0ocCl7cmV0dXJuIHAucmVwbGFjZSgvJi9nbSwiJmFtcDsiKS5yZXBsYWNlKC88L2dtLCImbHQ7Iil9ZnVuY3Rpb24gZihyLHEscCl7cmV0dXJuIFJlZ0V4cChxLCJtIisoci5jST8iaSI6IiIpKyhwPyJnIjoiIikpfWZ1bmN0aW9uIGIocil7Zm9yKHZhciBwPTA7cDxyLmNoaWxkTm9kZXMubGVuZ3RoO3ArKyl7dmFyIHE9ci5jaGlsZE5vZGVzW3BdO2lmKHEubm9kZU5hbWU9PSJDT0RFIil7cmV0dXJuIHF9aWYoIShxLm5vZGVUeXBlPT0zJiZxLm5vZGVWYWx1ZS5tYXRjaCgvXHMrLykpKXticmVha319fWZ1bmN0aW9uIGgodCxzKXt2YXIgcD0iIjtmb3...(line truncated)...
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+</head>
+
+<body>
+
+<style type="text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img { 
+  max-width:100%; 
+  height: auto; 
+}
+</style>
+<div class="container-fluid main-container">
+
+
+
+<div id="TOC">
+<ul>
+<li><a href="#practical-machine-learning---prediction-assignment-write-up">Practical Machine Learning - Prediction Assignment Write-up</a><ul>
+<li><a href="#background">Background</a></li>
+<li><a href="#data">Data</a></li>
+<li><a href="#goal">Goal</a></li>
+<li><a href="#development">Development</a></li>
+<li><a href="#conclusions">Conclusions</a></li>
+</ul></li>
+</ul>
+</div>
+
+<div id="practical-machine-learning---prediction-assignment-write-up" class="section level1">
+<h1>Practical Machine Learning - Prediction Assignment Write-up</h1>
+<div id="background" class="section level2">
+<h2>Background</h2>
+<p>Using devices such as <em>Jawbone Up</em>, <em>Nike FuelBand</em>, and <em>Fitbit</em> it is now possible to collect a large amount of data about personal activity relatively inexpensively. These type of devices are part of the quantified self movement – a group of enthusiasts who take measurements about themselves regularly to improve their health, to find patterns in their behavior, or because they are tech geeks. One thing that people regularly do is quantify how <em>much</em> of a particular activity...(line truncated)...
+<p>In this project, the goal will be to use data from accelerometers on the belt, forearm, arm, and dumbell of 6 participants. They were asked to perform barbell lifts correctly and incorrectly in 5 different ways. More information is available from the website here: <a href="http://groupware.les.inf.puc-rio.br/har" class="uri">http://groupware.les.inf.puc-rio.br/har</a> (see the section on the Weight Lifting Exercise Dataset).</p>
+</div>
+<div id="data" class="section level2">
+<h2>Data</h2>
+<p>The training data for this project are available here: <a href="https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv" class="uri">https://d396qusza40orc.cloudfront.net/predmachlearn/pml-training.csv</a></p>
+<p>The test data are available here: <a href="https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv" class="uri">https://d396qusza40orc.cloudfront.net/predmachlearn/pml-testing.csv</a></p>
+<p>The data for this project come from this source: <a href="http://groupware.les.inf.puc-rio.br/har" class="uri">http://groupware.les.inf.puc-rio.br/har</a>. If you use the document you create for this class for any purpose please cite them as they have been very generous in allowing their data to be used for this kind of assignment.</p>
+</div>
+<div id="goal" class="section level2">
+<h2>Goal</h2>
+<p>The goal of the project is to predict the manner in which they did the exercise. This is the “classe” variable in the training set.</p>
+</div>
+<div id="development" class="section level2">
+<h2>Development</h2>
+<p>1.- I first loaded the data into the training and testing set. We defined the NA in order to check where there is no information.</p>
+<pre class="{r}"><code>training&lt;-read.csv(&quot;pml-training.csv&quot;,na.strings=c(&quot;NA&quot;,&quot;#DIV/0!&quot;,&quot;&quot;))
+testing&lt;-read.csv(&quot;pml-testing.csv&quot;,na.strings=c(&quot;NA&quot;,&quot;#DIV/0!&quot;,&quot;&quot;))</code></pre>
+<p>2.- I did some exploratory analysis and cleaning</p>
+<pre class="{r}"><code>dim(training)</code></pre>
+<p>[1] 19622 160</p>
+<pre class="{r}"><code>dim(testing)</code></pre>
+<p>[1] 20 160</p>
+<p>There are 19,622 instances for training with 160 variables, 20 instances for testing.</p>
+<p>I realized that there are many NAs in some variables. The idea is to find the variables that have more than 10,000 NAs and take them out of the data sets (50% of the data).</p>
+<p>finding the variables (columns) that have more than 10,000 NA</p>
+<pre class="{r}"><code>nac&lt;-colSums(is.na(training))&gt;10000
+sum(nac)</code></pre>
+<p>[1] 100</p>
+<p>There are 100 variables where there are more than 10,000 NA .</p>
+<p>I removed the columns (variable) that have more than 10,000 NA</p>
+<pre class="{r}"><code>training2&lt;-training[,-which(nac==TRUE)]</code></pre>
+<p>I removed first row that do not have information for predictions</p>
+<pre class="{r}"><code>training3&lt;-training2[,-1]</code></pre>
+<p>3.- Fitting a Model</p>
+<pre class="{r}"><code>library(caret)
+set.seed(32243)</code></pre>
+<p>I created the data partitioning</p>
+<pre class="{r}"><code>inTrain&lt;-createDataPartition(training3$classe,p=0.6,list=FALSE)
+train &lt;- training3[inTrain,]
+test&lt;- training3[-inTrain,]</code></pre>
+<ul>
+<li>CART</li>
+</ul>
+<p>The first model I used is CART model from Caret package.</p>
+<pre class="{r}"><code>modelFitRP&lt;-train(classe~.,data=train,method=&quot;rpart&quot;)
+ModelFitRP</code></pre>
+<p>Accuracy = 0.61</p>
+<p>The accuracy in this model in the training set is 0.61. I will check in the testing set.</p>
+<pre class="{r}"><code>predRP&lt;-predict(modelFitRP,newdata=test)
+confusionMatrix(predRP,test$classe)</code></pre>
+<p>Accuracy = 0.63</p>
+<p>The accuracy in this model in the testing set is 0.63. It seems there is no overfitting.</p>
+<ul>
+<li>CART WITH RPART</li>
+</ul>
+<p>I will use now CART model from Rpart package.</p>
+<pre class="{r}"><code>library(rpart)
+modelFitRP2&lt;- rpart(classe ~ ., data=train, method=&quot;class&quot;)
+predRP2&lt;-predict(modelFitRP2,test,type=&quot;class&quot;)
+confusionMatrix(predRP2,test$classe)</code></pre>
+<p>Accuracy = 0.87</p>
+<p>The accuracy in this model in the testing set is 0.87.</p>
+<ul>
+<li>RANDOM FOREST</li>
+</ul>
+<p>I will use now Random Forest model from randomForest package.</p>
+<pre class="{r}"><code>library(randomForest)
+modelFitRF &lt;- randomForest(classe ~. , data=train)
+predRF&lt;-predict(modelFitRF,test,type=&quot;class&quot;)
+confusionMatrix(predRF,test$classe)</code></pre>
+<p>Accuracy = 0.99</p>
+<p>The accuracy in this model in the testing set is 0.99.</p>
+</div>
+<div id="conclusions" class="section level2">
+<h2>Conclusions</h2>
+<p>If we compare CART model and Random Forest, the first one provide accuracy of 0.87 and the second one 0.99. We choose Random Forest as the model to evaluate the testing data set.</p>
+<p>predicting on the testing data set of 20 instances</p>
+<pre class="{r}"><code>testing2&lt;-testing[,-which(nac==TRUE)]
+testing3&lt;-testing2[,-1]</code></pre>
+<p>I had to use the same levels from the training set</p>
+<pre class="{r}"><code>levels(testing3$cvtd_timestamp) = levels(train$cvtd_timestamp)
+levels(testing3$new_window) = levels(train$new_window)
+predRPt&lt;-predict(modelFitRF,testing3,type=&quot;class&quot;)
+answers = as.character(predRPt)
+answers</code></pre>
+<p>These are the predictions for the 20 test cases.</p>
+<p>[1] “B” “A” “B” “A” “A” “E” “D” “B” “A” “A” “B” “C” “B” “A” “E” “E” “A” “B” “B” [20] “B”</p>
+<p>I will now created the 20 files for the Course Project Submission:</p>
+<pre class="{r}"><code>pml_write_files = function(x){
+  n = length(x)
+  for(i in 1:n){
+    filename = paste0(&quot;problem_id_&quot;,i,&quot;.txt&quot;)
+    write.table(x[i],file=filename,quote=FALSE,row.names=FALSE,col.names=FALSE)
+  }
+}
+
+pml_write_files(answers)</code></pre>
+</div>
+</div>
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
